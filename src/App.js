@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import RegisterForm from './components/RegisterForm';
+import ProductForm from './components/ProductForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class RegisterFormContainer extends Component {
+  submit = values => {
+    window.alert(JSON.stringify(values, null, 4))
+  }
+
+  getInitialValues() {
+    return {
+      preference: "tabs",
+      newsletter: true
+    }
+  }
+
+  render() {
+    return (
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6 col-sm-9 bg-success"><RegisterForm onSubmit={this.submit}
+            initialValues={this.getInitialValues()} /></div>
+          <div class="col-6 col-sm-3 bg-warning"><ProductForm /></div>
+        </div>
+      </div>
+  
+    )
+  }
 }
 
-export default App;
+export default RegisterFormContainer
